@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    
+        
+        <Button 
+            android:id="@+id/year_minus_button"
+        	android:text="&lt;"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:gravity="center"
+        	android:textSize="25dp"
+        	android:textStyle="bold"
+        	android:paddingLeft="20dp"
+        	android:paddingRight="20dp"/>
+        
+        <TextView
+            android:id="@+id/year_textview"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/calendar_header_font_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            />
+        
+        <Button 
+            android:id="@+id/year_plus_button"
+        	android:text="&gt;"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:gravity="center"
+        	android:textSize="25dp"
+        	android:textStyle="bold"
+        	android:paddingLeft="20dp"
+        	android:paddingRight="20dp"/>    
+    </LinearLayout>
+    
+<android.support.v4.view.ViewPager
     android:id="@+id/calendar_view_pager"
     android:layout_width="match_parent"
     android:layout_height="210dp"
-    android:layout_alignParentBottom="true"
     android:background="@color/agenda_header_background_color" />
+</LinearLayout>

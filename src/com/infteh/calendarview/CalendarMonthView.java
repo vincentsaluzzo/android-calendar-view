@@ -41,11 +41,6 @@ public class CalendarMonthView extends LinearLayout {
 	 * context.
 	 */
 	private Context mContext;
-
-	/**
-	 * Year Label
-	 */
-	private TextView mYear;
 	
 	/**
 	 * Конструктор.
@@ -91,25 +86,6 @@ public class CalendarMonthView extends LinearLayout {
 			}
 		});
 		
-		Button nextYear = (Button) findViewById(R.id.year_plus_button);
-		Button previousYear = (Button) findViewById(R.id.year_minus_button);
-		mYear = (TextView) findViewById(R.id.year_textview);
-		
-		nextYear.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				nextYear();
-			}
-		});
-		
-		previousYear.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				previousYear();
-			}
-		});
 	}
 	
 	/**
@@ -156,16 +132,10 @@ public class CalendarMonthView extends LinearLayout {
 			// make first letter in upper case
 			month = month.substring(0, 1).toUpperCase() + month.substring(1);
 		}
-		title.setText(month);
-		//title.setText(String.format("%s %s", month, android.text.format.DateFormat.format("yyyy", mInitialMonth)));
+		//title.setText(month);
+		title.setText(String.format("%s %s", month, android.text.format.DateFormat.format("yyyy", mInitialMonth)));
 	}
 	
-	private void initYearCaption() {
-		String year;
-		year = android.text.format.DateFormat.format("yyyy", mInitialMonth).toString();
-		mYear.setText(year);
-	}
-
 	/**
 	 * @param context context.
 	 */
@@ -197,7 +167,7 @@ public class CalendarMonthView extends LinearLayout {
 		mDaysAdapter.refreshDays();
 		mDaysAdapter.notifyDataSetChanged();
 		initMonthCaption();
-		initYearCaption();
+		
 	}
 
 	/**
@@ -216,18 +186,5 @@ public class CalendarMonthView extends LinearLayout {
 	 */
 	public final void unregisterCalendarDatePickObserver() {
 		this.mObserver = null;
-	}
-	
-	
-	public final void nextYear() {
-		Calendar newMonth = mInitialMonth;
-		newMonth.set(Calendar.YEAR, newMonth.get(Calendar.YEAR)+1);
-		this.setMonth(newMonth);
-	}
-	
-	public final void previousYear() {
-		Calendar newMonth = mInitialMonth;
-		newMonth.set(Calendar.YEAR, newMonth.get(Calendar.YEAR)-1);
-		this.setMonth(newMonth);
 	}
 }

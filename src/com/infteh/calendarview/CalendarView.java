@@ -6,7 +6,11 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * calendar view.
@@ -24,6 +28,11 @@ public class CalendarView extends LinearLayout {
 	 * adapter.
 	 */
 	private MonthPagerAdapter adapter;
+
+	/**
+	 * Year Label
+	 */
+	private TextView mYear;
 	
 	/**
 	 * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ.
@@ -49,6 +58,26 @@ public class CalendarView extends LinearLayout {
 		adapter = new MonthPagerAdapter(inflater, pager);
 		pager.setAdapter(adapter);
 		pager.setCurrentItem(MonthPagerAdapter.INFINITE / 2);
+		
+		Button nextYear = (Button) findViewById(R.id.year_plus_button);
+		Button previousYear = (Button) findViewById(R.id.year_minus_button);
+		mYear = (TextView) findViewById(R.id.year_textview);
+		
+		nextYear.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				nextYear();
+			}
+		});
+		
+		previousYear.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				previousYear();
+			}
+		});
 	}
 	
 	/**
@@ -58,6 +87,7 @@ public class CalendarView extends LinearLayout {
 	 */
 	public final void registerCalendarDatePickObserver(final CalendarDatePick observer) {
 		((MonthPagerAdapter) pager.getAdapter()).setPickObserver(observer);
+		this.initYearCaption();
 	}
 	
 	/**
@@ -74,6 +104,7 @@ public class CalendarView extends LinearLayout {
 	 */
 	public final void setMonth(Calendar month) {
 		adapter.setMonth(month);
+		this.initYearCaption();
 	}
 
 	/**
@@ -82,5 +113,23 @@ public class CalendarView extends LinearLayout {
 	 */
 	public final Calendar getMonth() {
 		return adapter.getMonth();
+	}
+	
+	private void initYearCaption() {
+		String year;
+		year = android.text.format.DateFormat.format("yyyy", adapter.getMonth()).toString();
+		//mYear.setText(year);
+	}
+	
+	public final void nextYear() {
+		Calendar newMonth = this.getMonth();
+		newMonth.set(Calendar.YEAR, newMonth.get(Calendar.YEAR)+1);
+		this.setMonth(newMonth);
+	}
+	
+	public final void previousYear() {
+		Calendar newMonth = this.getMonth();
+		newMonth.set(Calendar.YEAR, newMonth.get(Calendar.YEAR)-1);
+		this.setMonth(newMonth);
 	}
 }

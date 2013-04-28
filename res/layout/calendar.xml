@@ -3,48 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
-    <LinearLayout 
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    
-        
-        <Button 
-            android:id="@+id/year_minus_button"
-        	android:text="&lt;"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:gravity="center"
-        	android:textSize="25dp"
-        	android:textStyle="bold"
-        	android:paddingLeft="20dp"
-        	android:paddingRight="20dp"/>
-        
-        <TextView
-            android:id="@+id/year_textview"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textColor="@color/calendar_header_font_color"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="2013"
-            />
-        
-        <Button 
-            android:id="@+id/year_plus_button"
-        	android:text="&gt;"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:gravity="center"
-        	android:textSize="25dp"
-        	android:textStyle="bold"
-        	android:paddingLeft="20dp"
-        	android:paddingRight="20dp"/>
-        
-        
-    </LinearLayout>
     
     <RelativeLayout
         android:id="@+id/header"
